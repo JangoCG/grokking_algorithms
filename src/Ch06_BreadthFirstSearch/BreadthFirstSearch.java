@@ -11,14 +11,15 @@ public class BreadthFirstSearch {
        List<String> searched = new ArrayList<>();
 
        while(!searchQueue.isEmpty()) {
-           String person = searchQueue.poll();
+           String person = searchQueue.poll(); // this is like popleft in python
 
            if(!searched.contains(person)) {
                if(person_sells_mangos(person)) {
                    System.out.println("We found our target" + person + " sells mangos");
                    return true;
                } else {
-                   // add the list of values to the queue? (all his friends)
+                   // add the friends of the persons we just checked (his network) to the search list.
+                   // we will then check if his friends are mango sellers.
                    searchQueue.addAll(graph.get(person));
                }
            }
@@ -41,5 +42,8 @@ public class BreadthFirstSearch {
         graph.put("peggy", Collections.emptyList());
         graph.put("thom", Collections.emptyList());
         graph.put("jonny", Collections.emptyList());
+
+        System.out.println("you");
+
     }
 }
